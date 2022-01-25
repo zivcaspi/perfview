@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>net46</TargetFramework>
     <RootNamespace>PerfView</RootNamespace>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
@@ -46,29 +46,21 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent.SupportFiles" Version="$(MicrosoftDiagnosticsTracingTraceEventSupportFilesVersion)" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All" />
   </ItemGroup>
 
   <!-- Ensure that the native components of TraceEvent are restored into the target and publish directories so that TraceEvent can pinvoke into them. -->
   <Target Name="CopyTraceEventNativeFilesToTarget" AfterTargets="Build">
     <ItemGroup>
-      <TraceEventNativeFiles
-        Include="$(TraceEventSupportFilesBase)native\**\*.*" />
+      <TraceEventNativeFiles Include="$(TraceEventSupportFilesBase)native\**\*.*" />
     </ItemGroup>
-    <Copy
-      SourceFiles="@(TraceEventNativeFiles)"
-      DestinationFiles="@(TraceEventNativeFiles->'$(TargetDir)%(RecursiveDir)%(FileName)%(Extension)')"
-      SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(TraceEventNativeFiles)" DestinationFiles="@(TraceEventNativeFiles->'$(TargetDir)%(RecursiveDir)%(FileName)%(Extension)')" SkipUnchangedFiles="true" />
   </Target>
   <Target Name="CopyTraceEventNativeFilesToPublish" AfterTargets="Publish">
     <ItemGroup>
-      <TraceEventNativeFiles
-        Include="$(TraceEventSupportFilesBase)native\**\*.*" />
+      <TraceEventNativeFiles Include="$(TraceEventSupportFilesBase)native\**\*.*" />
     </ItemGroup>
-    <Copy
-      SourceFiles="@(TraceEventNativeFiles)"
-      DestinationFiles="@(TraceEventNativeFiles->'$(PublishDir)%(RecursiveDir)%(FileName)%(Extension)')"
-      SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(TraceEventNativeFiles)" DestinationFiles="@(TraceEventNativeFiles->'$(PublishDir)%(RecursiveDir)%(FileName)%(Extension)')" SkipUnchangedFiles="true" />
   </Target>
 
   <ItemGroup>
@@ -76,14 +68,14 @@
 <!-- TODO: These are needed for Heap dump and fine grained .NET allocation and call profiling but 
      I have pruned these out for now so we can at least get ETW working.   Bring them back eventually.
 
-    <EmbeddedResource Include="..\HeapDump\bin\x64\$(Configuration)\net45\HeapDump.exe">
+    <EmbeddedResource Include="..\HeapDump\bin\x64\$(Configuration)\net46\HeapDump.exe">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\amd64\HeapDump.exe</LogicalName>
       <Link>amd64\HeapDump.exe</Link>
       <Visible>False</Visible>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\HeapDump\bin\x64\$(Configuration)\net45\HeapDump.exe.config">
+    <EmbeddedResource Include="..\HeapDump\bin\x64\$(Configuration)\net46\HeapDump.exe.config">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\amd64\HeapDump.exe.config</LogicalName>
@@ -138,6 +130,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TraceEvent\TraceEvent.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.IO.Compression" />
   </ItemGroup>
 
 

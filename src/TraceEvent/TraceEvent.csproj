@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk"> 
 
   <PropertyGroup>
-    <TargetFrameworks>net45;netstandard1.6;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net46</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -43,6 +43,7 @@
     Unconditional use of PackageReference would work if we targeted net46, but the reference APIs do not include
     support for net45 targets. Work around the issue by using conditional references.
   -->
+  <!-- TODO: ZivC: Is this still needed? -->
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'netstandard1.6'">
     <PackageReference Include="Microsoft.Win32.Registry" Version="4.4.0" />
     <PackageReference Include="System.IO.Compression" Version="4.3.0" />
@@ -58,9 +59,15 @@
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0" />
     <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Security.Cryptography.ProtectedData">
+      <Version>6.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
   </ItemGroup>
@@ -71,8 +78,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent.SupportFiles" Version="$(MicrosoftDiagnosticsTracingTraceEventSupportFilesVersion)" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.40.0" />
     <PackageReference Include="System.Reflection.Metadata" Version="1.5.0" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.4.0" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.3" />
 
   <!-- *** SourceLink Support *** -->
   <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
@@ -196,7 +205,7 @@
     <!-- *********************************************************** -->
     <!-- Copying three managed binaries explicitly should not be needed because the 
          dependency logic should just do it for us, but for some reason ths only
-         works for the net45 target framework and not the netstandard1.6.  and netstanard2.0 
+         works for the net46 target framework and not the netstandard1.6.  and netstanard2.0 
          We work around it here by copying the files explicitly. 
 	 We don't have version for 2.0 so we use the 1.6 versions.  -->
 

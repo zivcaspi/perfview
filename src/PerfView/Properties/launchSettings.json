@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PerfView": {
+      "commandName": "Project",
+      "commandLineArgs": "c:\\temp\\perfview\\perfview.etl.zip"
+    }
+  }
+}

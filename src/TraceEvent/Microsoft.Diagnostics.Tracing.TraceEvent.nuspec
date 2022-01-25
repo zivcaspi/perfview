@@ -29,14 +29,14 @@
     <tags>TraceEvent EventSource Microsoft ETW Event Tracing for Windows</tags>
 
     <dependencies>
-      <group targetFramework=".NETFramework4.5">
-        <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.5.2" />
+      <group targetFramework=".NETFramework4.6">
+        <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.5.3" />
       </group>
       <group targetFramework=".NETStandard1.6">
-        <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.5.2" />
+        <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.5.3" />
       </group>
       <group targetFramework=".NETStandard2.0">
-        <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.5.2" />
+        <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.5.3" />
       </group>
     </dependencies>
   </metadata>
@@ -100,18 +100,18 @@
     <!-- NET 4.5 Framework -->
 
     <!-- Built libraries -->
-    <file src="$OutDir$net45\Microsoft.Diagnostics.Tracing.TraceEvent.dll" target="lib\net45" />
-    <file src="$OutDir$net45\Microsoft.Diagnostics.Tracing.TraceEvent.xml" target="lib\net45" />
-    <file src="$OutDir$net45\Microsoft.Diagnostics.Tracing.TraceEvent.pdb" target="lib\net45" />
+    <file src="$OutDir$net46\Microsoft.Diagnostics.Tracing.TraceEvent.dll" target="lib\net46" />
+    <file src="$OutDir$net46\Microsoft.Diagnostics.Tracing.TraceEvent.xml" target="lib\net46" />
+    <file src="$OutDir$net46\Microsoft.Diagnostics.Tracing.TraceEvent.pdb" target="lib\net46" />
 
-    <file src="$OutDir$net45\Microsoft.Diagnostics.FastSerialization.dll" target="lib\net45" />
-    <file src="$OutDir$net45\Microsoft.Diagnostics.FastSerialization.xml" target="lib\net45" />
-    <file src="$OutDir$net45\Microsoft.Diagnostics.FastSerialization.pdb" target="lib\net45" />
+    <file src="$OutDir$net46\Microsoft.Diagnostics.FastSerialization.dll" target="lib\net46" />
+    <file src="$OutDir$net46\Microsoft.Diagnostics.FastSerialization.xml" target="lib\net46" />
+    <file src="$OutDir$net46\Microsoft.Diagnostics.FastSerialization.pdb" target="lib\net46" />
 
     <!-- Support Dlls -->
-    <file src="$OutDir$net45\Dia2Lib.dll" target="lib\net45" />
-    <file src="$OutDir$net45\TraceReloggerLib.dll" target="lib\net45" />
-    <file src="$OutDir$net45\OSExtensions.dll" target="lib\net45" />
+    <file src="$OutDir$net46\Dia2Lib.dll" target="lib\net46" />
+    <file src="$OutDir$net46\TraceReloggerLib.dll" target="lib\net46" />
+    <file src="$OutDir$net46\OSExtensions.dll" target="lib\net46" />
 
     <!-- Source code (All Frameworks *) -->
     <file exclude="obj\**\*.cs;bin\**\*.cs;TraceEvent.Tests\**\*.cs;Ctf\CtfTracing.Tests\**\*.cs" src="**\*.cs" target="src" />
